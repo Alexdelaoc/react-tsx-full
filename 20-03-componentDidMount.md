@@ -16,9 +16,9 @@ en el árbol) el componente utilizaremos para tareas de inicialización:
 - Inicilizar observables y timers
 
 - Crear elementos del DOM con otras librerías (jQuery)
-
-componentDidMount() {
 ```tsx
+componentDidMount() {
+
   fetch('https://miapp.com/api/datos')
     .then(resp => resp.json())
     .then(datos => {
