@@ -24,8 +24,16 @@ componentes contenedores.
 <MiBoton>Texto del botón</MiBoton>
 ```
 El valor que tenemos entre las etiquetas de nuestros componentes le llegan a estos dentro de la
-propiedad children.
+propiedad `children`.
 
 ```tsx
-<button type="button">{props.children}</button>
+import type { ReactNode, FC } from 'react'
+
+type MiBotonProps = {
+  children: ReactNode
+}
+
+const MiBoton: FC<MiBotonProps> = ({ children }) => {
+  return <button type="button">{children}</button>
+}
 ```

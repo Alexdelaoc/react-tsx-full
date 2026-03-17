@@ -23,7 +23,7 @@ Primero hay que crear un contexto que almacene los datos a compartir con otros c
 ```tsx
 usando la función React.createContext.
 
-export const MiContexto = React.createContext('Aquí van los datos');
+export const MiContexto = React.createContext<string>('Aquí van los datos');
 ```
 Después tenemos dos componentes:
 
