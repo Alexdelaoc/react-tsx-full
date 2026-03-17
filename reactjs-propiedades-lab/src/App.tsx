@@ -1,31 +1,41 @@
-import { noticias } from "./data/noticias";
-import Sugus from "./components/Sugus";
-import Noticia from "./components/Noticia";
+import { Suspense, lazy, useState } from "react";
+import withData from "./hoc/withData";
+import InfoUsuario from "./components/InfoUsuario";
+import { SpinnerDotted } from "spinners-react";
+import type { RandomUserApiResponse } from "./components/InfoUsuario";
+import Reproductor from "./components/Reproductor";
+import ListaNoticias from "./components/ListaNoticias";
+import ListaSugus from "./components/ListaSugus";
+import Inicio from "./components/Inicio";
+
+const InfoUsuarioWithData = withData<object, RandomUserApiResponse>(
+  InfoUsuario,
+  "https://randomuser.me/api/",
+  <SpinnerDotted size={50} thickness={100} speed={100} color="#36ad47" />,
+);
+
+const Admin = lazy(() => import("./components/Admin"));
 
 const App = () => {
-  const sabores = ["limón", "naranja", "piña", "cereza", "fresa"] as const;
-  const flavorColors: Record<(typeof sabores)[number], string> = {
-    limón: "#FDE23A",
-    naranja: "#F28E40",
-    piña: "#227BBE",
-    cereza: "#AD3B52",
-    fresa: "#EA464C",
-  };
-
+  const [esAdmin, setEsAdmin] = useState(false);
   return (
     <section>
       <div>
-        <h2>Sugus</h2>
-        {sabores.map((sabor) => (
-          <Sugus key={sabor} sabor={sabor} color={flavorColors[sabor]} />
-        ))}
+        <button type="button" onClick={() => setEsAdmin(!esAdmin)}>
+          Toggle admin
+        </button>
+        {esAdmin ? (
+          <Suspense fallback={<p>Loading...</p>}>
+            <Admin />
+          </Suspense>
+        ) : (
+          <Inicio />
+        )}
       </div>
-      <div>
-        <h2>Noticias</h2>
-        {noticias.map((noticia) => (
-          <Noticia key={noticia.id} noticia={noticia} />
-        ))}
-      </div>
+      <InfoUsuarioWithData />
+      <Reproductor />
+      <ListaNoticias />
+      <ListaSugus />
     </section>
   );
 };
