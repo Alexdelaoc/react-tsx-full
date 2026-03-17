@@ -1,0 +1,135 @@
+.carrito-container {
+  max-width: 500px;
+  margin: 20px auto;
+  padding: 24px;
+  background: var(--code-bg, #f4f3ec);
+  border: 1px solid var(--border, #e5e4e7);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  text-align: left;
+}
+
+.carrito-container h2 {
+  text-align: center;
+  margin: 0;
+}
+
+.carrito-container h3 {
+  margin: 0 0 8px;
+  font-size: 16px;
+}
+
+.catalogo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.catalogo-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 10px;
+  background: var(--bg, #fff);
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.catalogo-item button {
+  padding: 4px 12px;
+  border: none;
+  border-radius: 6px;
+  background: var(--accent, #aa3bff);
+  color: #fff;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.carrito-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.carrito-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 10px;
+  background: var(--bg, #fff);
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.carrito-item span:first-child {
+  flex: 1;
+}
+
+.carrito-item input {
+  width: 50px;
+  padding: 4px;
+  border: 1px solid var(--border, #e5e4e7);
+  border-radius: 6px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.carrito-item button {
+  padding: 4px 10px;
+  border: none;
+  border-radius: 6px;
+  background: #e74c3c;
+  color: #fff;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.carrito-descuento label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.carrito-descuento input {
+  width: 60px;
+  padding: 6px;
+  border: 1px solid var(--border, #e5e4e7);
+  border-radius: 6px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.carrito-total {
+  text-align: center;
+  padding-top: 10px;
+  border-top: 1px solid var(--border, #e5e4e7);
+}
+
+.precio-tachado {
+  text-decoration: line-through;
+  color: var(--text, #6b6375);
+  font-size: 14px;
+  margin: 0;
+}
+
+.precio-final {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-h, #08060d);
+  margin: 4px 0 12px;
+}
+
+.carrito-total button {
+  padding: 8px 20px;
+  border: none;
+  border-radius: 8px;
+  background: var(--border, #e5e4e7);
+  color: var(--text-h, #08060d);
+  cursor: pointer;
+  font-size: 14px;
+}

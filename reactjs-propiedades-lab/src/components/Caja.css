@@ -1,0 +1,79 @@
+.formulario {
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 24px;
+  background: var(--code-bg, #f4f3ec);
+  border: 1px solid var(--border, #e5e4e7);
+  border-radius: 12px;
+  box-shadow: var(--shadow, rgba(0, 0, 0, 0.1) 0 10px 15px -3px);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.formulario h2 {
+  margin: 0 0 4px;
+  text-align: center;
+}
+
+.formulario label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-h, #08060d);
+}
+
+.formulario input,
+.formulario textarea {
+  padding: 10px 12px;
+  border: 1px solid var(--border, #e5e4e7);
+  border-radius: 8px;
+  font-size: 16px;
+  font-family: inherit;
+  background: var(--bg, #fff);
+  color: var(--text-h, #08060d);
+  transition: border-color 0.2s;
+}
+
+.formulario input:focus,
+.formulario textarea:focus {
+  outline: none;
+  border-color: var(--accent, #aa3bff);
+}
+
+.formulario textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+.formulario-botones {
+  display: flex;
+  gap: 10px;
+}
+
+.formulario-botones button {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.formulario-botones button:hover {
+  opacity: 0.85;
+}
+
+.formulario-botones button[type="submit"] {
+  background: var(--accent, #aa3bff);
+  color: #fff;
+}
+
+.formulario-botones button[type="button"] {
+  background: var(--border, #e5e4e7);
+  color: var(--text-h, #08060d);
+}

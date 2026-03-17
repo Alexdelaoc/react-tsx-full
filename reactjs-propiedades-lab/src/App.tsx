@@ -8,6 +8,7 @@ import ListaNoticias from "./components/ListaNoticias";
 import ListaSugus from "./components/ListaSugus";
 import Inicio from "./components/Inicio";
 
+
 const InfoUsuarioWithData = withData<object, RandomUserApiResponse>(
   InfoUsuario,
   "https://randomuser.me/api/",
@@ -15,6 +16,7 @@ const InfoUsuarioWithData = withData<object, RandomUserApiResponse>(
 );
 
 const Admin = lazy(() => import("./components/Admin"));
+const Carrito = lazy(() => import("./components/Carrito"));
 
 const App = () => {
   const [esAdmin, setEsAdmin] = useState(false);
@@ -27,6 +29,7 @@ const App = () => {
         {esAdmin ? (
           <Suspense fallback={<p>Loading...</p>}>
             <Admin />
+            <Carrito />
           </Suspense>
         ) : (
           <Inicio />

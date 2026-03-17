@@ -23,32 +23,29 @@ Ahora vamos a levantar el servidor de desarrollo con el comando:
 ```tsx
 $ npm start
 ```
+
 Empezamos por crear un componente Caja que será el componente que vamos a mover por la
 pantalla.
 
 **Archivo:** `/reactjs-hooks-usereducer-lab/src/components/Caja.tsx`
 
 ```tsx
-import React from 'react'
+import React from "react";
 
 const Caja = () => {
+  return <div style={{ width: "100px", height: "100px", backgroundColor: "darkred", position: "absolute", left: "0px", top: "0px" }}></div>;
+};
 
-return (
-  <div style={{width: '100px', height: '100px', backgroundColor: 'darkred', position: 'absolute', left: '0px', top: '0px'}}>
-
-    </div>
-  )
-}
-
-export default Caja
+export default Caja;
 ```
+
 Ahora que tenemos la caja, vamos a mostrarla en el componente App de la aplicación.
 
 **Archivo:** `/reactjs-hooks-usereducer-lab/src/components/App.tsx`
 
 ```tsx
-import React, { Component } from 'react'
-import Caja from './Caja'
+import React, { Component } from "react";
+import Caja from "./Caja";
 
 class App extends Component {
   render() {
@@ -56,12 +53,13 @@ class App extends Component {
       <div>
         <Caja />
       </div>
-    )
+    );
   }
 }
 
-export default App
+export default App;
 ```
+
 Ahora vamos a crear nuestro reducer para gestionar la posición de la caja en la pantalla. Para esto
 vamos a usar el hook useReducer al que le vamos a pasar una función de reducer y el estado
 inicial como parámetros.
@@ -77,41 +75,35 @@ dependiendo de las teclas pulsadas.
 **Archivo:** `/reactjs-hooks-usereducer-lab/src/components/Caja.tsx`
 
 ```tsx
-import React from 'react'
+import React from "react";
 
 const initialState = {
-  posX: (window.innerWidth / 2) - 50,
-  posY: (window.innerHeight / 2) - 50
-}
+  posX: window.innerWidth / 2 - 50,
+  posY: window.innerHeight / 2 - 50,
+};
 
 function reducer(state, action) {
-  switch(action.type) {
-    case 'ArrowLeft':
-      return {...state, posX: `${parseInt(state.posX)-10}px`};
-    case 'ArrowRight':
-      return {...state, posX: `${parseInt(state.posX)+10}px`};
-    case 'ArrowUp':
-      return {...state, posY: `${parseInt(state.posY)-10}px`};
-    case 'ArrowDown':
-      return {...state, posY: `${parseInt(state.posY)+10}px`};
+  switch (action.type) {
+    case "ArrowLeft":
+      return { ...state, posX: `${parseInt(state.posX) - 10}px` };
+    case "ArrowRight":
+      return { ...state, posX: `${parseInt(state.posX) + 10}px` };
+    case "ArrowUp":
+      return { ...state, posY: `${parseInt(state.posY) - 10}px` };
+    case "ArrowDown":
+      return { ...state, posY: `${parseInt(state.posY) + 10}px` };
     default:
       return state;
   }
 }
 
 const Caja = () => {
+  return <div style={{ width: "100px", height: "100px", backgroundColor: "darkred", position: "absolute", left: "0px", top: "0px" }}></div>;
+};
 
-return (
-  <div style={{width: '100px', height: '100px', backgroundColor: 'darkred', position: 'absolute', left: '0px', top:
+export default Caja;
 ```
-'0px'}}>
-```tsx
-    </div>
-  )
-}
 
-export default Caja
-```
 Ahora que tenemos el reducer y el estado inicial, vamos a añadir el hook dentro del componente al
 que le vamos a pasar estos dos argumentos y nos va a devolver el estado actual que serán las
 coordenadas y la función de dispatch para poder emitir acciones al reducer.
@@ -122,42 +114,48 @@ estilos del componente.
 **Archivo:** `/reactjs-hooks-usereducer-lab/src/components/Caja.tsx`
 
 ```tsx
-import React, { useReducer } from 'react'
+import React, { useReducer } from "react";
 
 const initialState = {
-  posX: (window.innerWidth / 2) - 50,
-  posY: (window.innerHeight / 2) - 50
-}
+  posX: window.innerWidth / 2 - 50,
+  posY: window.innerHeight / 2 - 50,
+};
 
 function reducer(state, action) {
-  switch(action.type) {
-    case 'ArrowLeft':
-      return {...state, posX: `${parseInt(state.posX)-10}px`};
-    case 'ArrowRight':
-      return {...state, posX: `${parseInt(state.posX)+10}px`};
-    case 'ArrowUp':
-      return {...state, posY: `${parseInt(state.posY)-10}px`};
-    case 'ArrowDown':
-      return {...state, posY: `${parseInt(state.posY)+10}px`};
+  switch (action.type) {
+    case "ArrowLeft":
+      return { ...state, posX: `${parseInt(state.posX) - 10}px` };
+    case "ArrowRight":
+      return { ...state, posX: `${parseInt(state.posX) + 10}px` };
+    case "ArrowUp":
+      return { ...state, posY: `${parseInt(state.posY) - 10}px` };
+    case "ArrowDown":
+      return { ...state, posY: `${parseInt(state.posY) + 10}px` };
     default:
       return state;
   }
 }
 
 const Caja = () => {
-  const [coords, dispatch] = useReducer(reducer, initialState)
+  const [coords, dispatch] = useReducer(reducer, initialState);
 
-return (
-  <div style={{width: '100px', height: '100px', backgroundColor: 'darkred', position: 'absolute', left: coords.posX,
-```
-top: coords.posY}}>
-```tsx
-    </div>
-  )
-}
+  return (
+    <div
+      style={{
+        width: "100px",
+        height: "100px",
+        backgroundColor: "darkred",
+        position: "absolute",
+        left: coords.posX,
+        top: coords.posY,
+      }}
+    ></div>
+  );
+};
 
-export default Caja
+export default Caja;
 ```
+
 Con estos cambios, la caja debería de aparecer centrada en la página, y solo nos queda poder
 moverla.
 
@@ -167,111 +165,106 @@ nombre de la tecla que se ha pulsado.
 **Archivo:** `/reactjs-hooks-usereducer-lab/src/components/Caja.tsx`
 
 ```tsx
-import React, { useReducer } from 'react'
+import React, { useReducer } from "react";
 
 const initialState = {
-  posX: (window.innerWidth / 2) - 50,
-  posY: (window.innerHeight / 2) - 50
-}
+  posX: window.innerWidth / 2 - 50,
+  posY: window.innerHeight / 2 - 50,
+};
 
 function reducer(state, action) {
-  switch(action.type) {
-    case 'ArrowLeft':
-      return {...state, posX: `${parseInt(state.posX)-10}px`};
-    case 'ArrowRight':
-      return {...state, posX: `${parseInt(state.posX)+10}px`};
-    case 'ArrowUp':
-      return {...state, posY: `${parseInt(state.posY)-10}px`};
-    case 'ArrowDown':
-      return {...state, posY: `${parseInt(state.posY)+10}px`};
-    default:
-
-        return state;
-    }
-}
-
-const Caja = () => {
-  const [coords, dispatch] = useReducer(reducer, initialState)
-
-const dispatchAction = (e) => {
-  dispatch({type: e.key})
-}
-
-return (
-  <div style={{width: '100px', height: '100px', backgroundColor: 'darkred', position: 'absolute', left: coords.posX,
-```
-top: coords.posY}}>
-```tsx
-    </div>
-  )
-}
-
-export default Caja
-```
-Para moverla con las flechas del teclado, necesitamos añadir un listener del evento keydown sobre
-la página del navegador cuando se cargue este componente, además de que tendremos que quitar
-el listener si el componente se elimina.
-
-```tsx
-Vamos a usar el hook de useEffect donde añadiremos estos listeners y como solo queremos que
-```
-este hook se ejecute una sola vez, le pasaremos como segundo parámetro un array vacio.
-
-```tsx
-Y para poder eliminar el listener tendremos que devolver dentro del useEffect una función en la
-```
-que llamemos al removeEventListener.
-
-**Archivo:** `/reactjs-hooks-usereducer-lab/src/components/Caja.tsx`
-
-```tsx
-import React, { useReducer, useEffect } from 'react'
-
-const initialState = {
-  posX: (window.innerWidth / 2) - 50,
-  posY: (window.innerHeight / 2) - 50
-}
-
-function reducer(state, action) {
-  switch(action.type) {
-    case 'ArrowLeft':
-      return {...state, posX: `${parseInt(state.posX)-10}px`};
-    case 'ArrowRight':
-      return {...state, posX: `${parseInt(state.posX)+10}px`};
-    case 'ArrowUp':
-      return {...state, posY: `${parseInt(state.posY)-10}px`};
-    case 'ArrowDown':
-      return {...state, posY: `${parseInt(state.posY)+10}px`};
+  switch (action.type) {
+    case "ArrowLeft":
+      return { ...state, posX: `${parseInt(state.posX) - 10}px` };
+    case "ArrowRight":
+      return { ...state, posX: `${parseInt(state.posX) + 10}px` };
+    case "ArrowUp":
+      return { ...state, posY: `${parseInt(state.posY) - 10}px` };
+    case "ArrowDown":
+      return { ...state, posY: `${parseInt(state.posY) + 10}px` };
     default:
       return state;
   }
 }
 
 const Caja = () => {
-  const [coords, dispatch] = useReducer(reducer, initialState)
+  const [coords, dispatch] = useReducer(reducer, initialState);
 
-const dispatchAction = (e) => {
-  dispatch({type: e.key})
-}
+  const dispatchAction = (e) => {
+    dispatch({ type: e.key });
+  };
 
-useEffect(() => {
+  return (
+    <div
+      style={{
+        width: "100px",
+        height: "100px",
+        backgroundColor: "darkred",
+        position: "absolute",
+        left: coords.posX,
+        top: coords.posY,
+      }}
+    ></div>
+  );
+};
 
-  window.addEventListener('keydown', dispatchAction)
-  return () => {
-    window.removeEventListener('keydown', dispatchAction)
-  }
-}, [])
-
-return (
-  <div style={{width: '100px', height: '100px', backgroundColor: 'darkred', position: 'absolute', left: coords.posX,
+export default Caja;
 ```
-top: coords.posY}}>
+
+Para moverla con las flechas del teclado, necesitamos añadir un listener del evento keydown sobre
+la página del navegador cuando se cargue este componente, además de que tendremos que quitar
+el listener si el componente se elimina.
+Vamos a usar el hook de useEffect donde añadiremos estos listeners y como solo queremos que
+este hook se ejecute una sola vez, le pasaremos como segundo parámetro un array vacio. Y para poder eliminar el listener tendremos que devolver dentro del useEffect una función en la que llamemos al removeEventListener.
+
+**Archivo:** `/reactjs-hooks-usereducer-lab/src/components/Caja.tsx`
+
 ```tsx
-    </div>
-  )
+import React, { useReducer, useEffect } from "react";
+
+const initialState = {
+  posX: window.innerWidth / 2 - 50,
+  posY: window.innerHeight / 2 - 50,
+};
+
+function reducer(state, action) {
+  switch (action.type) {
+    case "ArrowLeft":
+      return { ...state, posX: `${parseInt(state.posX) - 10}px` };
+    case "ArrowRight":
+      return { ...state, posX: `${parseInt(state.posX) + 10}px` };
+    case "ArrowUp":
+      return { ...state, posY: `${parseInt(state.posY) - 10}px` };
+    case "ArrowDown":
+      return { ...state, posY: `${parseInt(state.posY) + 10}px` };
+    default:
+      return state;
+  }
 }
 
-export default Caja
+const Caja = () => {
+  const [coords, dispatch] = useReducer(reducer, initialState);
+
+  const dispatchAction = (e) => {
+    dispatch({ type: e.key });
+  };
+
+  useEffect(() => {
+    window.addEventListener("keydown", dispatchAction);
+    return () => {
+      window.removeEventListener("keydown", dispatchAction);
+    };
+  }, []);
+
+  return (
+    <div
+      style={{ width: "100px", height: "100px", backgroundColor: "darkred", position: "absolute", left: coords.posX, top: coords.posY }}
+    ></div>
+  );
+};
+
+export default Caja;
 ```
+
 Al añadir el listener, ya deberíamos de poder mover la caja por la pantalla usando las teclas de las
 flechas del teclado.

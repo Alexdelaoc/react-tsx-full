@@ -1,5 +1,6 @@
 import { useRef, useState, type ChangeEvent } from "react";
 import sonidoPiolin from "../assets/sonido_piolin.mp3";
+import "./Reproductor.css";
 
 const Reproductor = () => {
   const [volumen, setVolumen] = useState(100);

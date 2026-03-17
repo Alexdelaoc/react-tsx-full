@@ -1,4 +1,5 @@
 import Sugus from "./Sugus";
+import "./ListaSugus.css";
 
 const sabores = ["limón", "naranja", "piña", "cereza", "fresa"] as const;
 
